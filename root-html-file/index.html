@@ -12,6 +12,8 @@
         "imports": {
           "app3": "http://localhost:4400/main.bundle.js",
           "app2": "http://localhost:4300/main.js",
+		    "app4": "http://localhost:4500/main.bundle.js",
+		  "app5": "http://localhost:4600/main.js",
           "navbar": "http://localhost:4200/main.js",
           "single-spa": "https://cdnjs.cloudflare.com/ajax/libs/single-spa/4.3.5/system/single-spa.min.js"
         }
@@ -56,6 +58,26 @@
           },
           function (location) {
             return location.pathname.startsWith('/app3');
+          }
+        )
+		
+		 singleSpa.registerApplication(
+          'app4',
+          function () {
+            return System.import('app4');
+          },
+          function (location) {
+            return location.pathname.startsWith('/app4');
+          }
+        )
+
+	 singleSpa.registerApplication(
+          'app5',
+          function () {
+            return System.import('app5');
+          },
+          function (location) {
+            return location.pathname.startsWith('/app5');
           }
         )
 
