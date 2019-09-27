@@ -17,7 +17,7 @@ const { AngularCompilerPlugin } = require('@ngtools/webpack');
 const nodeModules = path.join(process.cwd(), 'node_modules');
 const realNodeModules = fs.realpathSync(nodeModules);
 const genDirNodeModules = path.join(process.cwd(), 'src', '$$_gendir', 'node_modules');
-const entryPoints = ["inline","polyfills","sw-register","styles","vendor","main"];
+const entryPoints = ["inline","sw-register","vendor","main"];
 const minimizeCss = false;
 const baseHref = "";
 const deployUrl = "";
@@ -147,6 +147,8 @@ module.exports = {
   "output": {
     "path": path.join(process.cwd(), "dist"),
     "filename": "[name].bundle.js",
+	"library": "app4",
+    "libraryTarget": "umd",
     "chunkFilename": "[id].chunk.js",
     "crossOriginLoading": false
   },
@@ -446,34 +448,6 @@ module.exports = {
       "cwd": "C:\\poc\\coexisting-angular-microfrontends-master\\app4"
     }),
     new NamedLazyChunksWebpackPlugin(),
-    new HtmlWebpackPlugin({
-      "template": "./src\\index.html",
-      "filename": "./index.html",
-      "hash": false,
-      "inject": true,
-      "compile": true,
-      "favicon": false,
-      "minify": false,
-      "cache": true,
-      "showErrors": true,
-      "chunks": "all",
-      "excludeChunks": [],
-      "title": "Webpack App",
-      "xhtml": true,
-      "chunksSortMode": function sort(left, right) {
-        let leftIndex = entryPoints.indexOf(left.names[0]);
-        let rightindex = entryPoints.indexOf(right.names[0]);
-        if (leftIndex > rightindex) {
-            return 1;
-        }
-        else if (leftIndex < rightindex) {
-            return -1;
-        }
-        else {
-            return 0;
-        }
-    }
-    }),
     new BaseHrefWebpackPlugin({}),
     new CommonsChunkPlugin({
       "name": [
