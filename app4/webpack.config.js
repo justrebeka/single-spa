@@ -147,7 +147,7 @@ module.exports = {
   "output": {
     "path": path.join(process.cwd(), "dist"),
     "filename": "[name].bundle.js",
-	"library": "app4",
+    "library": "app4",
     "libraryTarget": "umd",
     "chunkFilename": "[id].chunk.js",
     "crossOriginLoading": false
